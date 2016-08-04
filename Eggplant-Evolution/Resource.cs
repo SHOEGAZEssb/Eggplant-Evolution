@@ -10,7 +10,7 @@ namespace Eggplant_Evolution
   /// <summary>
   /// Base class for all resources.
   /// </summary>
-  class Resource
+  public class Resource
   {
     #region Properties
 
@@ -83,11 +83,24 @@ namespace Eggplant_Evolution
     private void Modifiers_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
       double basePerSecond = Modifiers.Where(i => i.Type == ModifierType.Direct).Sum(i => i.Value);
-      double percentage = 100 + Modifiers.Where(i => i.Type == ModifierType.Percentual).Sum(i => i.Value);
+      double percentage = Modifiers.Where(i => i.Type == ModifierType.Percentual).Sum(i => i.Value);
 
-      PerSecond = (percentage * basePerSecond) / 100;
+      PerSecond = basePerSecond + (percentage * basePerSecond) / 100;
     }
 
     #endregion Construction
+
+    /// <summary>
+    /// Increases the <see cref="Value"/> by
+    /// </summary>
+    /// <param name="percentage">
+    /// Percentage of <see cref="PerSecond"/> to add.
+    /// For example, if the tick is 100 ms, we have
+    /// 10%. 1 second tick is 100%
+    /// </param>
+    public void Tick(double percentage)
+    {
+      Value += (percentage * PerSecond) / 100;
+    }
   }
 }

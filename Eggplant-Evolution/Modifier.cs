@@ -9,7 +9,7 @@ namespace Eggplant_Evolution
   /// <summary>
   /// Possible types of modifiers.
   /// </summary>
-  enum ModifierType
+  public enum ModifierType
   {
     /// <summary>
     /// A direct "per second" value that will be
@@ -24,7 +24,7 @@ namespace Eggplant_Evolution
     Percentual
   }
 
-  class Modifier
+  public class Modifier
   {
     #region Properties
 
