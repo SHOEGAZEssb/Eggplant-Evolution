@@ -40,10 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modifier\DirectModifier.cs" />
-    <Compile Include="Modifier\ModifierBase.cs" />
-    <Compile Include="Modifier\PercentualModifier.cs" />
-    <Compile Include="ResourceBase.cs" />
+    <Compile Include="Modifier.cs" />
+    <Compile Include="Resource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
