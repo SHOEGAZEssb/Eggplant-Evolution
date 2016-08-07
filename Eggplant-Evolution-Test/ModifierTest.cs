@@ -28,7 +28,7 @@ namespace Eggplant_Evolution_Test
     public void TestDirectValue()
     {
       Modifier mod = new Modifier("Ident", 0.63, ModifierType.Direct);
-      Resource rsc = new Resource("Res");
+      Resource rsc = new Resource(Program.UniqueResourceID++, "Res");
       rsc.Modifiers.Add(mod);
       rsc.Tick(100);
       Assert.That(rsc.Value, Is.EqualTo(0.63));
@@ -44,7 +44,7 @@ namespace Eggplant_Evolution_Test
     {
       Modifier directMod = new Modifier("Ident", 10, ModifierType.Direct);
       Modifier percentualMod = new Modifier("Ident", 50, ModifierType.Percentual);
-      Resource rsc = new Resource("Res");
+      Resource rsc = new Resource(Program.UniqueResourceID++, "Res");
       rsc.Modifiers.Add(directMod);
       rsc.Modifiers.Add(percentualMod);
       rsc.Tick(100);
@@ -60,7 +60,7 @@ namespace Eggplant_Evolution_Test
     public void TestSinglePercentualValue()
     {
       Modifier percentualMod = new Modifier("Ident", 50, ModifierType.Percentual);
-      Resource rsc = new Resource("Res");
+      Resource rsc = new Resource(Program.UniqueResourceID++, "Res");
       rsc.Modifiers.Add(percentualMod);
       rsc.Tick(100);
       Assert.That(rsc.Value, Is.EqualTo(0));

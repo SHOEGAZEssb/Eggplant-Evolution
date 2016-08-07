@@ -12,7 +12,25 @@ namespace Eggplant_Evolution
   /// </summary>
   public class Resource
   {
+    /// <summary>
+    /// A list holding all loaded unique ids.
+    /// Throws an exception if a unique id is about
+    /// to get added taht is already added.
+    /// </summary>
+    public static List<int> ActiveUniqueIDs = new List<int>();
+
     #region Properties
+
+    /// <summary>
+    /// A unique id for this resource to
+    /// identify what it is.
+    /// </summary>
+    public int UniqueID
+    {
+      get { return _uniqueID; }
+      private set { _uniqueID = value; }
+    }
+    private int _uniqueID;
 
     /// <summary>
     /// The name of this resource.
@@ -66,9 +84,15 @@ namespace Eggplant_Evolution
     /// <summary>
     /// Constructor.
     /// </summary>
+    /// <param name="uniqueID">Unique id of this resource.</param>
     /// <param name="name">Name of this resource.</param>
-    public Resource(string name)
+    public Resource(int uniqueID, string name)
     {
+      if (ActiveUniqueIDs.Contains(uniqueID))
+        throw new ArgumentException("Resource with id " + uniqueID + " already exists!");
+      ActiveUniqueIDs.Add(uniqueID);
+      UniqueID = uniqueID;
+
       Name = name;
       Modifiers = new ObservableCollection<Modifier>();
       Modifiers.CollectionChanged += Modifiers_CollectionChanged;
